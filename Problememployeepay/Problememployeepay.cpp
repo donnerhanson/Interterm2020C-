@@ -1,18 +1,17 @@
-//
-//  main.cpp
-//  Problememployeepay
-//
-//  Created by Donner Hanson on 1/14/20.
-//
-/*
- Problem 3 (employeepay):
- An employee is paid at a rate of $16.00 per hour for regular hours worked in a week. Any hours over that
- are paid at the overtime rate of one and one-half times that. From the worker’s gross pay, 6% is withheld
- for Social Security tax, 14% is withheld for federal income tax, 5% is withheld for state income tax, and
- $10 per week is withheld for medical insurance.
- 
- Write a program that will read in the number of hours worked in a week as input and that will then output the worker’s gross pay, each withholding amount, and the net take-home pay for the week.
- */
+// Name: Donner Hanson
+// Chapman ID: 1276484
+// Assignement 1: Problem 3 (Employee Pay)
+// Description:
+// Problem 3 (Employee Pay): An employee is paid at a rate of $16.00 per hour
+// for regular hours worked in a week. Any hours over that are paid at the
+// overtime rate of one and one-half times that. From the worker’s gross pay,
+// 6% is withheld for Social Security tax, 14% is withheld for federal income
+// tax, 5% is withheld for state income tax, and $10 per week is withheld for
+// medical insurance.
+// A program that will read in the number of hours worked in a week as input
+// and that will then output the worker’s gross pay, each withholding amount,
+// and the net take-home pay for the week.
+////////////////////////////////////////////////////////////////////////////////
 
 #include <cmath>
 #include <iomanip>
@@ -20,7 +19,6 @@
 #include <limits>
 #include <stdexcept>
 #include <string>
-
 
 // USING STATEMENTS FROM RESPECTIVE LIBRARIES
 // cmath
@@ -42,17 +40,18 @@ using std::runtime_error;
 using std::string;
 
 // CONST EXPRESSIONS
-const int FLOAT_PRECISION = 2;
+// formatting const expressions
+const int FLOAT_PRECISION = 2;      // set to 3 to show the thous. dec. place
+// numerical defaults
 const double DEFAULT_DOUBLE = 0.00;
-
-const double NORMAL_WRK_WK_HRS = 40.00;
-
-const double REG_PAY = 16.00;
-const double OT_PERCENT = 1.50;
-const double SS_TAX_PERCENT = 0.06;
-const double FI_TAX_PERCENT = 0.14;
-const double SI_TAX_PERCENT = 0.05;
-const double MED_WITHOLD_DOLLARS = 10.00;
+// $$ const expressions
+const double NORMAL_WRK_WK_HRS = 40.00;     // per weekly pay period
+const double REG_PAY = 16.00;               // per hour
+const double OT_PERCENT = 1.50;             // 1 and a half times REG_PAY
+const double SS_TAX_PERCENT = 0.06;         // Social Security Tax
+const double FI_TAX_PERCENT = 0.14;         // Federal Income Tax
+const double SI_TAX_PERCENT = 0.05;         // State Income Tax
+const double MED_WITHOLD_DOLLARS = 10.00;   // Medical Flat Rate witholding in $
 
 //FUNCTIONS
 double
@@ -120,14 +119,13 @@ enactGovernment(double hardEarnedCash)
     return deductedAmount;
 }
 
+// MAIN
 int main(int argc, const char * argv[]) {
     
-    // set precision of floating point numbers
+    // set precision of floating point numbers on output
     cout << fixed << setprecision(FLOAT_PRECISION);
     
-    
-    double hoursWorked(0);
-    
+    double hoursWorked(DEFAULT_DOUBLE);
     string userInput;
     // 1) READ hours worked - Catch any errors from user
     // uses float comparison method
@@ -163,8 +161,7 @@ int main(int argc, const char * argv[]) {
         }
     }
     
-    double grossPay(0);
-    
+    double grossPay(DEFAULT_DOUBLE);
     // if 40 or less hours worked
     if (fabs(hoursWorked - NORMAL_WRK_WK_HRS) <= numeric_limits<double>::epsilon()  || hoursWorked < NORMAL_WRK_WK_HRS)
     {
@@ -173,11 +170,10 @@ int main(int argc, const char * argv[]) {
     else if (hoursWorked > NORMAL_WRK_WK_HRS) // OT
     {
         grossPay += getNormalPay(NORMAL_WRK_WK_HRS);
-        // Any hours over that are paid at the overtime rate of one and one-half times that.
+        // Any hours over that are paid at the overtime rate of one-half times
         grossPay += getOverTimePay(hoursWorked - NORMAL_WRK_WK_HRS);
     }
-    
-    // if gross pay still == 0 throw an error
+    // if gross pay still == 0 or less throw an error
     try
     {
         if (fabs(grossPay) <= numeric_limits<double>::epsilon())
@@ -191,12 +187,9 @@ int main(int argc, const char * argv[]) {
         throw(EXIT_FAILURE);
     }
     cout << "Gross pay: " << grossPay << "\n";
-    
     // deductableAmount is a positive floating point number
     double deductableAmount(enactGovernment(grossPay));
-    
     outputNetPay(grossPay, deductableAmount);
-
     
     return 0;
 }

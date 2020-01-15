@@ -1,10 +1,11 @@
-//
-//  main.cpp
-//  Problemcereal
-//
-//  Created by Donner Hanson on 1/13/20.
-//  Copyright © 2020 Donner Hanson. All rights reserved.
-//
+// Name: Donner Hanson
+// Chapman ID: 1276484
+// Assignement 1: Problem 1 CEREAL
+// Description:
+// Problem 1 (CEREAL): a program that will: Read the weight (console input)
+// of a package of breakfast cereal in ounces, output the weight in metric tons
+// and output the number of boxes needed to yield one metric ton of cereal.
+////////////////////////////////////////////////////////////////////////////////
 
 /* ASSIGNMENT CEREAL
  A metric ton is 35,273.92 ounces. Write a program that will:
