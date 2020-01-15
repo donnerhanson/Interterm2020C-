@@ -7,14 +7,6 @@
 // and output the number of boxes needed to yield one metric ton of cereal.
 ////////////////////////////////////////////////////////////////////////////////
 
-/* ASSIGNMENT CEREAL
- A metric ton is 35,273.92 ounces. Write a program that will:
- Read the weight (console input) of a package of breakfast cereal in ounces
- Output the weight in metric tons
- Output the number of boxes needed
- to yield one metric ton of cereal.
- */
-
 #include <cmath>
 #include <iomanip>
 #include <iostream>
@@ -59,7 +51,8 @@ public:
         setWeightOunces();
         
         setPackageWeightInMetricTons();
-        // Set and Output Number of boxes needed to equal one metric ton of cereal
+        // Set and Output Number of boxes needed to equal one metric ton of
+        // cereal
         setNumberOfOrigBoxesToMetricTon();
     }
    
