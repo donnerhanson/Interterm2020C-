@@ -5,7 +5,7 @@ output: Problememployeepay.o
 
 
 Problememployeepay.o: Problememployeepay.cpp
-	g++ -c Problemfirecapacity.cpp
+	g++ -c Problememployeepay.cpp
 
 
 clean:
