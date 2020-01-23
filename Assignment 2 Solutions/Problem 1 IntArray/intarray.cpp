@@ -31,37 +31,39 @@ using std::to_string;
 using std::stringstream;
 // CONST EXPRESSIONS
 const int ARR_SZ = 10;
-string MAX_INT_VAL = to_string(numeric_limits<int>::max());
+const string MAX_INT_VAL = to_string(numeric_limits<int>::max());
+const string DIGITS = "0123456789";
+const string NUM_TOO_LARGE_MSG = "Number too large for integer storage\n";
 //FUNCTIONS
 
 
 // MAIN
 int main(int argc, const char * argv[]) {
     int numberArray[ARR_SZ];
-    for (int i = 0; i < ARR_SZ; ++i)
+    for (int i(0); i < ARR_SZ; ++i)
     {
         numberArray [i] = -1;  // initialize all to -1
     }
     
     string userIn = "";
-    int convertedNum = 0;
+    int convertedNum(0);
     cout << "This program will output non-negative numbers"
     << " that are entered by a user. Enter a negative number or"
     << " alphabetic character to quit and output\n";
     cout << "Enter first number: ";
     stringstream strToNum("");
-    for (int i = 0; convertedNum >= 0 && i < ARR_SZ; ++i)
+    for (int i(0); convertedNum >= 0 && i < ARR_SZ; ++i)
     {
         
         cin >> userIn;
         // check if empty and if positive integer
         if (!userIn.empty() &&
-            userIn.find_first_not_of("0123456789") == std::string::npos)
+            userIn.find_first_not_of(DIGITS) == std::string::npos)
         {
             if (userIn.length() == MAX_INT_VAL.length())
             {
                 bool isTooLarge(false);
-                for (int j = 0; j < userIn.length(); ++j)
+                for (int j(0); j < userIn.length(); ++j)
                 {
                     // if the number is greater than the max int value break
                     if (userIn.at(j) > MAX_INT_VAL.at(j))
@@ -77,13 +79,14 @@ int main(int argc, const char * argv[]) {
                 }
                 if (isTooLarge)
                 {
-                    cout << "number too large for integer storage\n";
+                    cout << NUM_TOO_LARGE_MSG;
                     break;
                 }
                 
             }
             else if (userIn.length() > MAX_INT_VAL.length())
             {
+                cout << NUM_TOO_LARGE_MSG;
                 break;
             }
             // else its a good length
@@ -103,9 +106,10 @@ int main(int argc, const char * argv[]) {
         if (i < ARR_SZ - 1)
             cout << "Enter next number: ";
     }
+    if (numberArray[0] != -1) // formatting
+        cout << "Stored values: " << endl;
     // all invalid elements set to -1 - will break when -1 found
-    cout << "Stored values: " << endl;
-    for (int i = 0; i < ARR_SZ && numberArray[i] >= 0; ++i)
+    for (int i(0); i < ARR_SZ && numberArray[i] >= 0; ++i)
     {
         cout << numberArray[i] << endl;
     }
