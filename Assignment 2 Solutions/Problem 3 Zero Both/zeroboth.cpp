@@ -17,31 +17,31 @@ Problem 3 (zeroboth.cpp): Implement a void function called zeroBoth that has two
 
 
 // USING STATEMENTS FROM RESPECTIVE LIBRARIES
-// cmath
-using std::fabs;
-using std::fmod;
-// iomanip
-using std::fixed;
-using std::setprecision;
+
 //iostream
-using std::cout;
-using std::cin;
 using std::cerr;
-// limits
-using std::numeric_limits;
-// stdexcept
-using std::invalid_argument;
-// string
-using std::string;
+using std::cin;
+using std::cout;
+using std::endl;
+
 
 // CONST EXPRESSIONS
 
 
-//FUNCTIONS
-
+//FUNCTION - Declarations
+void zeroBoth (int &a, int &b);
 
 // MAIN
 int main(int argc, const char * argv[]) {
 
+    int a(100), b(100);
+    zeroBoth(a, b);
+    cout << a << ", " << b << endl;
     return 0;
+}
+//Function Definitions
+void zeroBoth (int &a, int &b)
+{
+    a = 0;
+    b = 0;
 }
