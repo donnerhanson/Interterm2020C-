@@ -23,20 +23,13 @@
  and 12 inches in a foot.
  */
 
-#include <iostream>
-#include <cmath>
 #include <iomanip>
 #include <iostream>
-#include <limits>
 #include <sstream>
-#include <stdexcept>
 #include <string>
 
 
 // USING STATEMENTS FROM RESPECTIVE LIBRARIES
-// cmath
-using std::fabs;
-using std::fmod;
 // iomanip
 using std::fixed;
 using std::setprecision;
@@ -45,10 +38,6 @@ using std::cout;
 using std::cin;
 using std::cerr;
 using std::endl;
-// limits
-using std::numeric_limits;
-// stdexcept
-using std::invalid_argument;
 // string
 using std::string;
 // sstream
