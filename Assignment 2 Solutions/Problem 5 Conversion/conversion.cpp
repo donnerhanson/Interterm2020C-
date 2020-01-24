@@ -59,9 +59,9 @@ const double METERS_IN_FT(0.3048);
 const double CENTIMETERS_IN_METER(100.0000);
 const double INCH_IN_FT(12.0000);
 const string DIGITS = "0123456789 ";
-const string MSG = "Enter a length in feet and inches (numbers separated by space) or exit to quit:";
+const string MSG = "Enter a length in feet and inches"
+" (numbers separated by space) or exit to quit:";
 const string EXIT = "exit";
-
 const int PRECISION(2);
 
 //FUNCTIONS
@@ -90,27 +90,28 @@ int main(int argc, const char * argv[]) {
 // FUNCTION DEFS
 void getUserInput(string &userIn)
 {
-    bool done(false);
-    while (!done)
+    bool isDone(false);
+    while (!isDone)
     {
         userIn = ""; // reset user in for each iteration
         cout << MSG << endl;
         getline(cin, userIn);
+        // scan user input for correctness or quit otherwise continue
         if (!userIn.empty() &&
             userIn.find_first_not_of(DIGITS) == std::string::npos)
         {
-            // scan user input for correctness
-            done = true;
+            isDone = true;
         }
         else if (!userIn.empty() && userIn == EXIT)
         {
-            done = true;
+            isDone = true;
         }
     }
 }
 double calculate (string userIn)
 {
     double feet(0), inch(0), meters(0);
+    // get index of the space
     int idx = (int)userIn.find(' ');
     // create a substring of the ft
     string ftStr = userIn.substr(0, idx);
@@ -134,21 +135,19 @@ double calculate (string userIn)
     feet += (inch / INCH_IN_FT);
     // feet to Meters
     meters = feet * METERS_IN_FT;
-
-    //cout << meters << endl;
     return meters;
 }
 
 void output(double totalMeters)
 {
     double cent(0);
-    int meters = (int)totalMeters; // to int - removes decimal
-    cent = (totalMeters - meters);
-    
+    // temp int cast - removes decimal
+    int wholeMeters = (int)totalMeters;
+    cent = (totalMeters - wholeMeters);
     // Centimeters as whole number
     cent *= CENTIMETERS_IN_METER;
     
-    cout << "meters: " << meters;
+    cout << "meters: " << wholeMeters;
     // set centimeter precision
     cout << fixed << setprecision(PRECISION)
             << ", centimeters: " << cent << endl;
